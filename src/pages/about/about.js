@@ -1,7 +1,8 @@
 import React from 'react'
 
+const {FIREBASE_API_KEY} = process.env
 const About = () => {
-  return <div>У нас есть все!!! Цветы, луковицы и елки</div>
+  return <div>О нас</div>
 }
 
 export default About

@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Paper, Typography } from '@material-ui/core'
-import { withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   mainWrapper: {
@@ -12,11 +11,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     margin: theme.spacing(1),
     cursor: 'pointer',
+    border: '1px solid #5b8926',
     [theme.breakpoints.down('1000')]: {
       minWidth: '30%',
     },
     [theme.breakpoints.down('700')]: {
-      minWidth: '100%',
+      width: '40%',
+      height: theme.spacing(15),
     },
     '&:hover': {
       transform: 'scale(1.03)',
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    opacity: '0.4',
+    opacity: '0.7',
   },
 }))
 
