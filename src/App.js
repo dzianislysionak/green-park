@@ -6,6 +6,7 @@ import About from './pages/about/about'
 import Catalog from './pages/catalog/catalog'
 import Contacts from './pages/contacts/contacts'
 import Home from './pages/home/home'
+import Admin from './pages/green-park-flowers/green-park-flowers'
 import './App.css'
 
 const App = () => (
@@ -16,6 +17,7 @@ const App = () => (
       <Route path='/catalog' component={Catalog} />
       <Route path='/about' component={About} />
       <Route path='/contacts' component={Contacts} />
+      <Route path='/green-park-flowers' component={Admin} />
     </Switch>
   </div>
 )

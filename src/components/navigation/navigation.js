@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     textDecoration: 'none',
   },
+  subNav: {
+    width: '30%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   navDropDownElement: {
     textDecoration: 'none',
     color: 'black',
@@ -32,9 +38,18 @@ const Navigation = () => {
   const classes = useStyles()
 
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [subAnchorEl, setsubAnchorEl] = React.useState(null)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
+  }
+
+  const handleSubClick = (event) => {
+    setsubAnchorEl(event.currentTarget)
+  }
+
+  const handleSubClose = () => {
+    setsubAnchorEl(null)
   }
 
   const handleClose = () => {
@@ -67,6 +82,7 @@ const Navigation = () => {
           >
             {homeData.map((data) => (
               <Link
+                key={data.redirectPath}
                 className={classes.navDropDownElement}
                 to={`/${data.redirectPath}`}
               >
@@ -82,12 +98,42 @@ const Navigation = () => {
               </Link>
             ))}
           </Menu>
-          <Link className={classes.navElement} to='/about'>
-            <Typography variant='h6'>О нас</Typography>
-          </Link>
-          <Link className={classes.navElement} to='/contacts'>
-            <Typography variant='h6'>Контакты</Typography>
-          </Link>
+          {window.innerWidth > 700 ? (
+            <div className={classes.subNav}>
+              <Link className={classes.navElement} to='/about'>
+                <Typography variant='h6'>О нас</Typography>
+              </Link>
+              <Link className={classes.navElement} to='/contacts'>
+                <Typography variant='h6'>Контакты</Typography>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Typography variant='h6' onClick={handleSubClick}>
+                m
+              </Typography>
+              <Menu
+                anchorEl={subAnchorEl}
+                keepMounted
+                open={Boolean(subAnchorEl)}
+                onClose={handleSubClose}
+                getContentAnchorEl={null}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+              >
+                <Link className={classes.navDropDownElement} to='/about'>
+                  <MenuItem onClick={handleSubClose}>
+                    <Typography variant='h6'>О нас</Typography>
+                  </MenuItem>
+                </Link>
+                <Link className={classes.navDropDownElement} to='/contacts'>
+                  <MenuItem onClick={handleSubClose}>
+                    <Typography variant='h6'>Контакты</Typography>
+                  </MenuItem>
+                </Link>
+              </Menu>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </div>
